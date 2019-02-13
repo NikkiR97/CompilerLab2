@@ -1,28 +1,28 @@
 /**
- * <h1>PascalStringToken</h1>
+ * <h1>CppStringToken</h1>
  *
- * <p> Pascal string tokens.</p>
+ * <p> Cpp string tokens.</p>
  *
  * <p>Copyright (c) 2017 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
 #include <string>
-#include "PascalStringToken.h"
-#include "../PascalError.h"
+#include "CppStringToken.h"
+#include "../CppError.h"
 
-namespace wci { namespace frontend { namespace pascal { namespace tokens {
+namespace wci { namespace frontend { namespace Cpp { namespace tokens {
 
 using namespace std;
 using namespace wci::frontend;
-using namespace wci::frontend::pascal;
+using namespace wci::frontend::Cpp;
 
-PascalStringToken::PascalStringToken(Source *source) throw (string)
-    : PascalToken(source)
+CppStringToken::CppStringToken(Source *source) throw (string)
+    : CppToken(source)
 {
     extract();
 }
 
-void PascalStringToken::extract() throw (string)
+void CppStringToken::extract() throw (string)
 {
     string value_str = "";
 
@@ -69,4 +69,4 @@ void PascalStringToken::extract() throw (string)
     }
 }
 
-}}}}  // namespace wci::frontend::pascal::tokens
+}}}}  // namespace wci::frontend::Cpp::tokens
