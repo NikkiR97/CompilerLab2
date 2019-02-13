@@ -26,7 +26,10 @@ using namespace wci::frontend;
 enum class CppTokenType
 {
     // Reserved words.
-	
+	AUTO, DOUBLE, INT, STRUCT, BREAK, ELSE, LONG, SWITCH,
+	CASE, ENUM, NAMESPACE, TEMPLATE, CHAR, EXTERN, OPERATOR, THIS,
+	CLASS, FLOAT, PROTECTED, THROW, CONST, FOR, PUBLIC, UNION,
+	CONTINUE, GOTO, RETURN, VOID, DO, IF, STATIC, WHILE
 
     // Special symbols.
     PLUS, MINUS, STAR, SLASH, COLON_EQUALS,
