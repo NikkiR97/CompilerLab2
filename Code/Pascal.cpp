@@ -14,6 +14,7 @@
 #include "wci/frontend/Parser.h"
 #include "wci/frontend/Scanner.h"
 #include "wci/frontend/Source.h"
+ #include "wci/frontend/cpp/CppToken.h"
 #include "wci/frontend/FrontendFactory.h"
 #include "wci/frontend/pascal/PascalToken.h"
 #include "wci/intermediate/SymTab.h"
@@ -29,6 +30,7 @@ using namespace wci::frontend::pascal;
 using namespace wci::intermediate;
 using namespace wci::backend;
 using namespace wci::message;
+using namespace wci::frontend::cpp;
 
 const string FLAGS = "[-ix]";
 const string USAGE =
