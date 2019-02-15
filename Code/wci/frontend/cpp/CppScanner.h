@@ -6,8 +6,13 @@
  * <p>Copyright (c) 2017 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
+<<<<<<< HEAD
+#ifndef WCI_FRONTEND_CPP_CPPSCANNER_H_
+#define WCI_FRONTEND_CPP_CPPSCANNER_H_
+=======
 #ifndef WCI_FRONTEND_Cpp_CppSCANNER_H_
 #define WCI_FRONTEND_Cpp_CppSCANNER_H_
+>>>>>>> 60f21d81d39ad8b538c8609981f7a5527a55bddd
 
 #include "../Scanner.h"
 #include "../Source.h"
