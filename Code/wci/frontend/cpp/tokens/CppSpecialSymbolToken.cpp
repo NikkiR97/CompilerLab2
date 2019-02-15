@@ -118,14 +118,36 @@ void CppSpecialSymbolToken::extract() throw (string)
         {
             current_ch = next_char();  // consume '&';
 
-            if (current_ch == '/' || current_ch =='=' || current_ch=='*')
+            if (current_ch == '/' || current_ch == '=' || current_ch=='*')
             {
                text += current_ch;
                next_char();  // consume '='
+                
+               if (current_ch == '*')
             }
 
             break;
          }
+            
+        // '*' or '*=' or '*/
+        case '*':
+        {
+            current_ch = next_char();  // consume ':';
+
+            if (current_ch == '=')
+            {
+                text += current_ch;
+                next_char();  // consume '='
+            }
+            
+            if (current_ch == '/')
+            {
+                text += current_ch;
+                next_char();  // consume '='
+            }
+
+            break;
+        }
 
         // '<', '<<', '<=', '<<='
         case '<':
