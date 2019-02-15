@@ -202,4 +202,3 @@ void CppSpecialSymbolToken::extract() throw (string)
 }
 
 }}}}  // namespace wci::frontend::Cpp::tokens
-

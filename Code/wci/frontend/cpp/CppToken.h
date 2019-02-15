@@ -15,7 +15,7 @@
 #include "../Token.h"
 #include "../Source.h"
 
-namespace wci { namespace frontend { namespace cpp {
+namespace wci { namespace frontend { namespace Cpp {
 
 using namespace std;
 using namespace wci::frontend;
@@ -111,7 +111,7 @@ constexpr CppTokenType PT_COUT = CppTokenType::COUT;
 constexpr CppTokenType PT_CIN = CppTokenType::CIN;
 constexpr CppTokenType PT_LESS_EQ = CppTokenType::LESS_EQ;
 constexpr CppTokenType PT_GREATER_EQ = CppTokenType::GREATER_EQ;
-constexpr CppTokenType PT_PLUS = CppTokenType::PLUS_EQ;
+//constexpr CppTokenType PT_PLUS = CppTokenType::PLUS_EQ;
 constexpr CppTokenType PT_MINUS_EQUAL = CppTokenType::MINUS_EQ;
 constexpr CppTokenType PT_MUL_EQ = CppTokenType::MUL_EQ;
 constexpr CppTokenType PT_DIC_EQ = CppTokenType::DIV_EQ;
@@ -133,7 +133,7 @@ constexpr CppTokenType PT_IDENTIFIER = CppTokenType::IDENTIFIER;
 constexpr CppTokenType PT_INTEGER = CppTokenType::INTEGER;
 constexpr CppTokenType PT_REAL = CppTokenType::REAL;
 constexpr CppTokenType PT_STRING = CppTokenType::STRING;
-constexpr CppTokenType PT_CHAR = CppTokenType::CHAR;
+//constexpr CppTokenType PT_CHAR = CppTokenType::CHAR;
 constexpr CppTokenType PT_ERROR = CppTokenType::ERROR;
 constexpr CppTokenType PT_END_OF_FILE = CppTokenType::END_OF_FILE;
 
