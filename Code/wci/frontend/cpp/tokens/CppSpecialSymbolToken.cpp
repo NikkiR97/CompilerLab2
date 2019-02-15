@@ -123,7 +123,6 @@ void CppSpecialSymbolToken::extract() throw (string)
                text += current_ch;
                next_char();  // consume '='
                 
-               if (current_ch == '*')
             }
 
             break;
