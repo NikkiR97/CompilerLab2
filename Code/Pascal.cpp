@@ -30,7 +30,7 @@ using namespace wci::frontend::pascal;
 using namespace wci::intermediate;
 using namespace wci::backend;
 using namespace wci::message;
-using namespace wci::frontend::cpp;
+using namespace wci::frontend::Cpp;
 
 const string FLAGS = "[-ix]";
 const string USAGE =
