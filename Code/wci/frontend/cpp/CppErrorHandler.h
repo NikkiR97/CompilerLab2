@@ -13,7 +13,7 @@
 #include "../Parser.h"
 #include "CppError.h"
 
-namespace wci { namespace frontend { namespace Cpp {
+namespace wci { namespace frontend { namespace cpp {
 
 using namespace std;
 using namespace wci::frontend;

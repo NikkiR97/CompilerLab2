@@ -12,7 +12,7 @@
 #include "CppError.h"
 #include "../../message/Message.h"
 
-namespace wci { namespace frontend { namespace Cpp {
+namespace wci { namespace frontend { namespace cpp {
 
 using namespace std;
 using namespace wci::frontend;
