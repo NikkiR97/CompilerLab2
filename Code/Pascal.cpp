@@ -14,7 +14,7 @@
 #include "wci/frontend/Parser.h"
 #include "wci/frontend/Scanner.h"
 #include "wci/frontend/Source.h"
- #include "wci/frontend/cpp/CppToken.h"
+#include "wci/frontend/cpp/CppToken.h"
 #include "wci/frontend/FrontendFactory.h"
 #include "wci/frontend/pascal/PascalToken.h"
 #include "wci/intermediate/SymTab.h"
