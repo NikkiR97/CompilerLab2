@@ -6,8 +6,8 @@
  * <p>Copyright (c) 2017 by Ronald Mak</p>
  * <p>For instructional purposes only.  No warranties.</p>
  */
-#ifndef Cpp_H_
-#define Cpp_H_
+#ifndef Cplusplus_H_
+#define Cplusplus_H_
 
 #include <iostream>
 #include <fstream>
@@ -28,7 +28,7 @@ using namespace wci::intermediate;
 using namespace wci::backend;
 using namespace wci::message;
 
-class Cpp : public MessageListener
+class Cplusplus : public MessageListener
 {
 public:
     /**
@@ -38,13 +38,13 @@ public:
      * @param filePath the source file path.
      * @param flags the command line flags.
      */
-    Cpp(string operation, string file_path, string flags)
+    Cplusplus(string operation, string file_path, string flags)
         throw (string);
 
     /**
      * Destructor.
      */
-    virtual ~Cpp();
+    virtual ~Cplusplus();
 
     /**
      * Receive a message sent by a message producer.

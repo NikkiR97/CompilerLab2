@@ -22,12 +22,12 @@ Parser *FrontendFactory::create_parser(string language, string type,
                                        Source *source)
     throw (string)
 {
-    if ((language == "Pascal") && (type == "top-down"))
+    if ((language == "Cpp") && (type == "top-down"))
     {
         Scanner *scanner = new PascalScanner(source);
         return new PascalParserTD(scanner);
     }
-    else if (language != "Pascal") {
+    else if (language != "Cpp") {
         throw new string("Parser factory: Invalid language '" +
                          language + "'");
     }
