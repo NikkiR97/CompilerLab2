@@ -171,21 +171,7 @@ void CppSpecialSymbolToken::extract() throw (string)
             }
             break;
         }
-
-        //'|', '|=' or '||'
-        case '|':
-        {
-        	current_ch = next_char();  // consume '&';
-
-        	if (current_ch == '=' || current_ch =='|')
-            {
-            	text += current_ch;
-            	next_char();  // consume '='
-            }
-
-            break;
-        }
-
+        
         default:
         {
             next_char();  // consume bad character
