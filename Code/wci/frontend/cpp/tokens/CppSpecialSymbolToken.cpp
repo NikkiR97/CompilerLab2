@@ -45,13 +45,16 @@ void CppSpecialSymbolToken::extract() throw (string)
         {
         	current_ch = next_char();  // consume ':';
 
-        	if (current_ch == '=' || current_ch =='+')
+        	if (current_ch == '=' )
         	{
             	text += current_ch;
                 next_char();  // consume '='
-            }
-
-
+          }
+          else if(current_ch =='+')
+          {
+            text += current_ch;
+            next_char();  // consume '+'
+          }
             break;
         }
 
@@ -60,10 +63,15 @@ void CppSpecialSymbolToken::extract() throw (string)
         {
            current_ch = next_char();  // consume ':';
 
-           if (current_ch == '=' || current_ch =='-')
+           if (current_ch == '=')
            {
              text += current_ch;
              next_char();  // consume '='
+           }
+           else if(current_ch == '-')
+           {
+            text += current_ch;
+             next_char();  // consume '-''
            }
 
 
@@ -76,10 +84,15 @@ void CppSpecialSymbolToken::extract() throw (string)
         {
             current_ch = next_char();  // consume '&';
 
-            if (current_ch == '=' || current_ch =='&')
+            if (current_ch == '=')
             {
                text += current_ch;
                next_char();  // consume '='
+            }
+            else if (current_ch == '&')
+            {
+              text += current_ch;
+              next_char();
             }
 
             break;
@@ -90,10 +103,15 @@ void CppSpecialSymbolToken::extract() throw (string)
         {
             current_ch = next_char();  // consume '&';
 
-            if (current_ch == '=' || current_ch =='|')
+            if (current_ch == '=')
             {
                text += current_ch;
                next_char();  // consume '='
+            }
+            else if(current_ch == '|')
+            {
+              text += current_ch;
+              next_char();
             }
 
             break;
@@ -118,11 +136,20 @@ void CppSpecialSymbolToken::extract() throw (string)
         {
             current_ch = next_char();  // consume '&';
 
-            if (current_ch == '/' || current_ch == '=' || current_ch=='*')
+            if (current_ch == '/')
+            {
+               text += current_ch;
+               next_char();  // consume '/'
+            }
+            else if (current_ch == '*')
             {
                text += current_ch;
                next_char();  // consume '='
-                
+            }
+            else if (current_ch == '=')
+            {
+               text += current_ch;
+               next_char();  // consume '='
             }
 
             break;
@@ -191,6 +218,24 @@ void CppSpecialSymbolToken::extract() throw (string)
                }
             }
             break;
+        }
+
+        case '\\':
+        {
+          current_ch = next_char();
+
+          if(current_ch = 'n')
+          {
+            text += current_ch;
+            next_char();
+          }
+          else if(current_ch == 't')
+          {
+            text += current_ch;
+            next_char();
+          }
+
+          break;
         }
         
         default:

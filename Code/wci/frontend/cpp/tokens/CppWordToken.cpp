@@ -31,6 +31,7 @@ CppWordToken::CppWordToken(Source *source) throw (string)
 void CppWordToken::extract() throw (string)
 {
     char current_ch = current_char();
+    bool lowerCase = true;
 
     // Get the word characters (letter or digit). The scanner has
     // already determined that the first character is a letter.
@@ -45,9 +46,19 @@ void CppWordToken::extract() throw (string)
     if (CppToken::RESERVED_WORDS.find(upper_case)
             != CppToken::RESERVED_WORDS.end())
     {
-        // Reserved word.
-        type = (TokenType) CppToken::RESERVED_WORDS[upper_case];
-        value = upper_case;
+        for(int i = 0;i<text.length();i++)
+        {
+            if(isupper(text[i]))
+            {
+                lowerCase = false;
+            }
+        }
+        if(lowerCase)
+        { 
+            // Reserved word.
+            type = (TokenType) CppToken::RESERVED_WORDS[upper_case];
+            value = upper_case;
+        }
     }
     else
     {

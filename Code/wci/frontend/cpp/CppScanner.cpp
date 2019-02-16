@@ -16,6 +16,7 @@
 #include "tokens/CppStringToken.h"
 #include "tokens/CppSpecialSymbolToken.h"
 #include "tokens/CppErrorToken.h"
+#include "tokens/CppCharacterToken.h"
 
 namespace wci { namespace frontend { namespace Cpp {
 
@@ -51,9 +52,17 @@ Token *CppScanner::extract_token() throw (string)
     {
         token = new CppNumberToken(source);
     }
-    else if (current_ch == '\'')
+    else if (current_ch == '"')
     {
         token = new CppStringToken(source);
+    }
+     else if (current_ch == '\\')
+    {
+        token = new CppSpecialSymbolToken(source);
+    }
+    else if (current_ch == '\'')
+    {
+        token = new CppCharacterToken(source);
     }
     else if (CppToken::SPECIAL_SYMBOLS.find(string_ch)
                 != CppToken::SPECIAL_SYMBOLS.end())
@@ -73,24 +82,49 @@ void CppScanner::skip_white_space() throw (string)
 {
     char current_ch = current_char();
 
-    while (isspace(current_ch) || (current_ch == '{')) {
+    while (isspace(current_ch) || (current_ch == '/')) {
 
         // Start of a comment?
-        if (current_ch == '{')
+        if (current_ch == '/')
+        {
+            current_ch = next_char();
+            if(current_ch == '/')
+            {
+                do
+                {
+                    current_ch = next_char();  // consume comment characters
+                }   while ((current_ch != '\n') &&
+                     (current_ch != Source::END_OF_FILE));
+
+            // Found closing '\n'?
+            if (current_ch == '\n')
+            {
+                current_ch = next_char();  // consume the '\n'
+            }
+        }
+        // this checks for /*
+        else if(current_ch == '*')
         {
             do
             {
-                current_ch = next_char();  // consume comment characters
-            } while ((current_ch != '}') &&
-                     (current_ch != Source::END_OF_FILE));
-
-            // Found closing '}'?
-            if (current_ch == '}')
+                do
+                {
+                    current_ch = next_char(); //cosume because comment
+                }
+                while((current_ch != '*') && (current_ch != Source::END_OF_FILE));
+            
+            // check for '*/'
+            if(current_ch == '*')
             {
-                current_ch = next_char();  // consume the '}'
+                current_ch = next_char(); //cosume *
             }
+            }while((current_ch != '/') && (current_ch != Source::END_OF_FILE));
         }
-
+        if(current_ch == '/')
+        {
+            current_ch = next_char(); //consume /
+        }
+    }
         // Not a comment.
         else current_ch = next_char();  // consume whitespace character
     }

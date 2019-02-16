@@ -26,114 +26,129 @@ using namespace wci::frontend;
 enum class CppTokenType
 {
     // Reserved words.
-	AUTO, DOUBLE, INT, STRUCT, BREAK, ELSE, LONG, SWITCH,
-	CASE, ENUM, NAMESPACE, TEMPLATE, CHAR, EXTERN, OPERATOR, THIS,
-	CLASS, FLOAT, PROTECTED, THROW, CONST, FOR, PUBLIC, UNION,
-	CONTINUE, GOTO, RETURN, VOID, DO, IF, STATIC, WHILE,
+    AUTO, BREAK, CASE, CHAR, CLASS, CONST, CONTINUE, DO,
+    DOUBLE, ELSE, ENUM, EXTERN, FOR, FLOAT, GOTO, STATIC,
+    INT, LONG, NAMESPACE, OPERATOR, PACKAGE, PUBLIC, RETURN, IF,
+    STRUCT, SWITCH, TEMPLATE, THIS, THROW, UNION, VOID, WHILE,
 
     // Special symbols.
-    NEG,NOT,AT,MOD,XOR,AND,MUL,MINUS,PLUS,
-	EQUAL,OR,DIV, COLON,SEMICOLON, QUESTIONMARK,
-	LESS,GREATER,DOT,COMMA,SQUOTE,QUOTE,LEFT_PAREN,
-	RIGHT_PAREN, LEFT_BRACKET, RIGHT_BRACKET, LEFT_BRACE,
-	RIGHT_BRACE, INCRE, DECRE, COUT, CIN, LESS_EQ, GREATER_EQ,
-	PLUS_EQ, MINUS_EQ, MUL_EQ, DIV_EQ, EQ_EQ, OR_EQ,
-	MOD_EQ, AND_EQ, XOR_EQ, NOT_EQ, COUT_EQ, CIN_EQ, OR_OR,
-	AND_AND, DIV_DIV, OPEN_BLOCK, CLOSE_BLOCK,
+    PLUS, MINUS, STAR, SLASH, FLAG, NEGATE, AT, MOD, AMPERSAND, ASSIGN,
+    COMMA, SEMICOLON, COLON, QUOTE, VER_BAR, QUESTION, DOT,
+    EQUALS, NOT_EQUALS, LESS_THAN, LESS_EQUALS, DOUBLE_QUOTE,
+    GREATER_EQUALS, GREATER_THAN, LEFT_PAREN, RIGHT_PAREN,
+    LEFT_BRACKET, RIGHT_BRACKET, LEFT_BRACE, RIGHT_BRACE,
+    UP_ARROW, INCREMENT, DECREMENT, LEFT_SHIFT, RIGHT_SHIFT,
+    ADD_EQUAL, SUB_EQUAL, MUL_EQUAL, DIV_EQUAL, OR_EQUAL, MOD_EQUAL,
+    AND_EQUAL, UP_ARROW_EQUAL, LEFT_SHIFT_EQUAL, RIGHT_SHIFT_EQUAL,
+    AND, OR, LINE_COMMENT, BEGIN_COMMENT, END_COMMENT, NEW_LINE, TAB,
 
-    IDENTIFIER, INTEGER, REAL, STRING,
-    ERROR, END_OF_FILE,
+    IDENTIFIER, INTEGER, REAL, STRING, CHARACTER,
+    ERROR, END_OF_FILE
 };
 
 constexpr CppTokenType PT_AUTO = CppTokenType::AUTO;
-constexpr CppTokenType PT_DOUBLE = CppTokenType::DOUBLE;
-constexpr CppTokenType PT_INT = CppTokenType::INT;
-constexpr CppTokenType PT_STRUCT = CppTokenType::STRUCT;
 constexpr CppTokenType PT_BREAK = CppTokenType::BREAK;
-constexpr CppTokenType PT_ELSE = CppTokenType::ELSE;
-constexpr CppTokenType PT_LONG = CppTokenType::LONG;
-constexpr CppTokenType PT_SWITCH = CppTokenType::SWITCH;
 constexpr CppTokenType PT_CASE = CppTokenType::CASE;
-constexpr CppTokenType PT_ENUM = CppTokenType::ENUM;
-constexpr CppTokenType PT_NAMESPACE = CppTokenType::NAMESPACE;
-constexpr CppTokenType PT_TEMPLATE = CppTokenType::TEMPLATE;
 constexpr CppTokenType PT_CHAR = CppTokenType::CHAR;
-constexpr CppTokenType PT_EXTERN = CppTokenType::EXTERN;
-constexpr CppTokenType PT_OPERATOR = CppTokenType::OPERATOR;
-constexpr CppTokenType PT_THIS = CppTokenType::THIS;
 constexpr CppTokenType PT_CLASS = CppTokenType::CLASS;
-constexpr CppTokenType PT_FLOAT = CppTokenType::FLOAT;
-constexpr CppTokenType PT_PROTECTED = CppTokenType::PROTECTED;
-constexpr CppTokenType PT_THROW = CppTokenType::THROW;
 constexpr CppTokenType PT_CONST = CppTokenType::CONST;
-constexpr CppTokenType PT_FOR = CppTokenType::FOR;
-constexpr CppTokenType PT_PUBLIC = CppTokenType::PUBLIC;
-constexpr CppTokenType PT_UNION = CppTokenType::UNION;
-constexpr CppTokenType pt_CONTINUE = CppTokenType::CONTINUE;
-constexpr CppTokenType PT_GOTO = CppTokenType::GOTO;
-constexpr CppTokenType PT_RETURN = CppTokenType::RETURN;
-constexpr CppTokenType PT_VOID = CppTokenType::VOID;
+constexpr CppTokenType PT_CONTINUE = CppTokenType::CONTINUE;
 constexpr CppTokenType PT_DO = CppTokenType::DO;
-constexpr CppTokenType PT_IF = CppTokenType::IF;
+
+constexpr CppTokenType PT_DOUBLE = CppTokenType::DOUBLE;
+constexpr CppTokenType PT_ELSE = CppTokenType::ELSE;
+constexpr CppTokenType PT_ENUM = CppTokenType::ENUM;
+constexpr CppTokenType PT_EXTERN = CppTokenType::EXTERN;
+constexpr CppTokenType PT_FOR = CppTokenType::FOR;
+constexpr CppTokenType PT_FLOAT = CppTokenType::FLOAT;
+constexpr CppTokenType PT_GOTO = CppTokenType::GOTO;
 constexpr CppTokenType PT_STATIC = CppTokenType::STATIC;
+
+
+constexpr CppTokenType PT_INT = CppTokenType::INT;
+constexpr CppTokenType PT_LONG = CppTokenType::LONG;
+constexpr CppTokenType PT_NAMESPACE = CppTokenType::NAMESPACE;
+constexpr CppTokenType PT_OPERATOR = CppTokenType::OPERATOR;
+constexpr CppTokenType PT_PACKAGE = CppTokenType::PACKAGE;
+constexpr CppTokenType PT_PUBLIC = CppTokenType::PUBLIC;
+constexpr CppTokenType PT_RETURN = CppTokenType::RETURN;
+constexpr CppTokenType PT_IF = CppTokenType::IF;
+
+constexpr CppTokenType PT_PROGRAM = CppTokenType::STRUCT;
+constexpr CppTokenType PT_RECORD = CppTokenType::SWITCH;
+constexpr CppTokenType PT_REPEAT = CppTokenType::TEMPLATE;
+constexpr CppTokenType PT_SET = CppTokenType::THIS;
+constexpr CppTokenType PT_THEN = CppTokenType::THROW;
+constexpr CppTokenType PT_TO = CppTokenType::UNION;
+constexpr CppTokenType PT_TYPE = CppTokenType::VOID;
 constexpr CppTokenType PT_WHILE = CppTokenType::WHILE;
 
-constexpr CppTokenType PT_NEG = CppTokenType::NEG;
-constexpr CppTokenType PT_NOT = CppTokenType::NOT;
+constexpr CppTokenType PT_PLUS = CppTokenType::PLUS;
+constexpr CppTokenType PT_MINUS = CppTokenType::MINUS;
+constexpr CppTokenType PT_STAR = CppTokenType::STAR;
+constexpr CppTokenType PT_SLASH = CppTokenType::SLASH;
+constexpr CppTokenType PT_FLAG = CppTokenType::FLAG;
+constexpr CppTokenType PT_NEGATE = CppTokenType::NEGATE;
 constexpr CppTokenType PT_AT = CppTokenType::AT;
 constexpr CppTokenType PT_MOD = CppTokenType::MOD;
-constexpr CppTokenType PT_XOR = CppTokenType::XOR;
-constexpr CppTokenType PT_AND = CppTokenType::AND;
-constexpr CppTokenType PT_MUL = CppTokenType::MUL;
-constexpr CppTokenType PT_MINUS = CppTokenType::MINUS;
-constexpr CppTokenType PT_PLUS = CppTokenType::PLUS;
-constexpr CppTokenType PT_EQUAL = CppTokenType::EQUAL;
-constexpr CppTokenType PT_OR = CppTokenType::OR;
-constexpr CppTokenType PT_DIV = CppTokenType::DIV;
-constexpr CppTokenType PT_COLON = CppTokenType::COLON;
-constexpr CppTokenType PT_SEMICOLON = CppTokenType::SEMICOLON;
-constexpr CppTokenType PT_QUESTIONMARK = CppTokenType::QUESTIONMARK;
-constexpr CppTokenType PT_LESS = CppTokenType::LESS;
-constexpr CppTokenType PT_GREATER = CppTokenType::GREATER;
-constexpr CppTokenType PT_DOT = CppTokenType::DOT;
+constexpr CppTokenType PT_AMPERSAND = CppTokenType::AMPERSAND;
+constexpr CppTokenType PT_ASSIGN = CppTokenType::ASSIGN;
+
 constexpr CppTokenType PT_COMMA = CppTokenType::COMMA;
-constexpr CppTokenType PT_SQUOTE = CppTokenType::SQUOTE;
+constexpr CppTokenType PT_SEMICOLON = CppTokenType::SEMICOLON;
+constexpr CppTokenType PT_COLON = CppTokenType::COLON;
 constexpr CppTokenType PT_QUOTE = CppTokenType::QUOTE;
+constexpr CppTokenType PT_VER_BAR = CppTokenType::VER_BAR;
+constexpr CppTokenType PT_QUESTION = CppTokenType::QUESTION;
+constexpr CppTokenType PT_DOT = CppTokenType::DOT;
+
+constexpr CppTokenType PT_EQUALS = CppTokenType::EQUALS;
+constexpr CppTokenType PT_NOT_EQUALS = CppTokenType::NOT_EQUALS;
+constexpr CppTokenType PT_LESS_THAN = CppTokenType::LESS_THAN;
+constexpr CppTokenType PT_LESS_EQUALS = CppTokenType::LESS_EQUALS;
+constexpr CppTokenType PT_DOUBLE_QUOTE = CppTokenType::DOUBLE_QUOTE;
+
+constexpr CppTokenType PT_GREATER_EQUALS = CppTokenType::GREATER_EQUALS;
+constexpr CppTokenType PT_GREATER_THAN = CppTokenType::GREATER_THAN;
 constexpr CppTokenType PT_LEFT_PAREN = CppTokenType::LEFT_PAREN;
 constexpr CppTokenType PT_RIGHT_PAREN = CppTokenType::RIGHT_PAREN;
+
 constexpr CppTokenType PT_LEFT_BRACKET = CppTokenType::LEFT_BRACKET;
 constexpr CppTokenType PT_RIGHT_BRACKET = CppTokenType::RIGHT_BRACKET;
 constexpr CppTokenType PT_LEFT_BRACE = CppTokenType::LEFT_BRACE;
-constexpr CppTokenType PT_Right_brace = CppTokenType::RIGHT_BRACE;
-constexpr CppTokenType PT_INCRE = CppTokenType::INCRE;
-constexpr CppTokenType PT_DECRE = CppTokenType::DECRE;
-constexpr CppTokenType PT_COUT = CppTokenType::COUT;
-constexpr CppTokenType PT_CIN = CppTokenType::CIN;
-constexpr CppTokenType PT_LESS_EQ = CppTokenType::LESS_EQ;
-constexpr CppTokenType PT_GREATER_EQ = CppTokenType::GREATER_EQ;
-//constexpr CppTokenType PT_PLUS = CppTokenType::PLUS_EQ;
-constexpr CppTokenType PT_MINUS_EQUAL = CppTokenType::MINUS_EQ;
-constexpr CppTokenType PT_MUL_EQ = CppTokenType::MUL_EQ;
-constexpr CppTokenType PT_DIC_EQ = CppTokenType::DIV_EQ;
-constexpr CppTokenType PT_EQ_EQ = CppTokenType::EQ_EQ;
-constexpr CppTokenType PT_OR_EQ= CppTokenType::OR_EQ;
-constexpr CppTokenType PT_MOD_EQ = CppTokenType::MOD_EQ;
-constexpr CppTokenType PT_AND_EQ = CppTokenType::AND_EQ;
-constexpr CppTokenType PT_XOR_EQ = CppTokenType::XOR_EQ;
-constexpr CppTokenType PT_NOT_EQ = CppTokenType::NOT_EQ;
-constexpr CppTokenType PT_COUT_EQ = CppTokenType::COUT_EQ;
-constexpr CppTokenType PT_CIN_EQ = CppTokenType::CIN_EQ;
-constexpr CppTokenType PT_OR_OR = CppTokenType::OR_OR;
-constexpr CppTokenType PT_AND_AND = CppTokenType::AND_AND;
-constexpr CppTokenType PT_DIV_DIV = CppTokenType::DIV_DIV;
-constexpr CppTokenType PT_OPEN_BLOCK = CppTokenType::OPEN_BLOCK;
-constexpr CppTokenType PT_CLOSE_BLOCK = CppTokenType::CLOSE_BLOCK;
+constexpr CppTokenType PT_RIGHT_BRACE = CppTokenType::RIGHT_BRACE;
+
+constexpr CppTokenType PT_UP_ARROW = CppTokenType::UP_ARROW;
+constexpr CppTokenType PT_INCREMENT = CppTokenType::INCREMENT;
+constexpr CppTokenType PT_DECREMENT = CppTokenType::DECREMENT;
+constexpr CppTokenType PT_LEFT_SHIFT = CppTokenType::LEFT_SHIFT;
+constexpr CppTokenType PT_RIGHT_SHIFT = CppTokenType::RIGHT_SHIFT;
+
+constexpr CppTokenType PT_ADD_EQUAL = CppTokenType::ADD_EQUAL;
+constexpr CppTokenType PT_SUB_EQUAL = CppTokenType::SUB_EQUAL;
+constexpr CppTokenType PT_MUL_EQUAL = CppTokenType::MUL_EQUAL;
+constexpr CppTokenType PT_DIV_EQUAL = CppTokenType::DIV_EQUAL;
+constexpr CppTokenType PT_OR_EQUAL = CppTokenType::OR_EQUAL;
+constexpr CppTokenType PT_MOD_EQUAL = CppTokenType::MOD_EQUAL;
+
+constexpr CppTokenType PT_AND_EQUAL = CppTokenType::AND_EQUAL;
+constexpr CppTokenType PT_UP_ARROW_EQUAL = CppTokenType::UP_ARROW_EQUAL;
+constexpr CppTokenType PT_LEFT_SHIFT_EQUAL = CppTokenType::LEFT_SHIFT_EQUAL;
+constexpr CppTokenType PT_RIGHT_SHIFT_EQUAL = CppTokenType::RIGHT_SHIFT_EQUAL;
+
+constexpr CppTokenType PT_AND = CppTokenType::AND;
+constexpr CppTokenType PT_OR = CppTokenType::OR;
+constexpr CppTokenType PT_LINE_COMMENT = CppTokenType::LINE_COMMENT;
+constexpr CppTokenType PT_BEGIN_COMMENT = CppTokenType::BEGIN_COMMENT;
+constexpr CppTokenType PT_END_COMMENT = CppTokenType::END_COMMENT;
+constexpr CppTokenType PT_NEW_LINE = CppTokenType::NEW_LINE;
+constexpr CppTokenType PT_TAB = CppTokenType::TAB;
 
 constexpr CppTokenType PT_IDENTIFIER = CppTokenType::IDENTIFIER;
 constexpr CppTokenType PT_INTEGER = CppTokenType::INTEGER;
 constexpr CppTokenType PT_REAL = CppTokenType::REAL;
 constexpr CppTokenType PT_STRING = CppTokenType::STRING;
-//constexpr CppTokenType PT_CHAR = CppTokenType::CHAR;
+constexpr CppTokenType PT_CHARACTER = CppTokenType::CHARACTER;
 constexpr CppTokenType PT_ERROR = CppTokenType::ERROR;
 constexpr CppTokenType PT_END_OF_FILE = CppTokenType::END_OF_FILE;
 
