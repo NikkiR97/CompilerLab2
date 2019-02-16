@@ -59,7 +59,12 @@ void CppParserTD::parse() throw (string)
                 value_str = cast(value, string);
                 break;
             }
-
+            case PT_CHAR:
+            {
+                type_str = "CHAR";
+                value_str = cast(value, char);
+                break;
+            }
             case PT_IDENTIFIER:
             {
                 type_str = "IDENTIFIER";

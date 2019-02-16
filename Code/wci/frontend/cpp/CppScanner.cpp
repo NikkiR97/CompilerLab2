@@ -16,6 +16,7 @@
 #include "tokens/CppStringToken.h"
 #include "tokens/CppSpecialSymbolToken.h"
 #include "tokens/CppErrorToken.h"
+#include "tokens/CppCharacterToken.h"
 
 namespace wci { namespace frontend { namespace Cpp {
 
@@ -51,9 +52,17 @@ Token *CppScanner::extract_token() throw (string)
     {
         token = new CppNumberToken(source);
     }
-    else if (current_ch == '\'')
+    else if (current_ch == '"')
     {
         token = new CppStringToken(source);
+    }
+     else if (current_ch == '\\')
+    {
+        token = new CppSpecialSymbolToken(source);
+    }
+    else if (current_ch == '\'')
+    {
+        token = new CppCharacterToken(source);
     }
     else if (CppToken::SPECIAL_SYMBOLS.find(string_ch)
                 != CppToken::SPECIAL_SYMBOLS.end())
@@ -71,7 +80,7 @@ Token *CppScanner::extract_token() throw (string)
 
 void CppScanner::skip_white_space() throw (string)
 {
-    char current_ch = current_char();
+    /*char current_ch = current_char();
 
     while (isspace(current_ch) || (current_ch == '{')) {
 
@@ -93,7 +102,50 @@ void CppScanner::skip_white_space() throw (string)
 
         // Not a comment.
         else current_ch = next_char();  // consume whitespace character
-    }
+    }*/
+    char current_ch = current_char();
+
+
+
+    while (isspace(current_ch) || (current_ch == '/')) {
+        // Start of a comment?
+        if (current_ch == '/')
+        {
+        	current_ch = next_char();
+        	//current_ch = current_char();
+        	if(current_ch == '/')
+            {
+        		do
+            	{
+                	current_ch = next_char();  // consume comment characters
+            	} while (current_ch != Source::END_OF_LINE);
+            }
+
+            // Found closing '*/'?
+            if (current_ch == '*')
+            {
+            	do
+            	{
+            	     current_ch = next_char();  // consume comment characters
+            	     if(current_ch == '*')
+            	     {
+            	    	 current_ch = next_char();
+            	    	 if (current_ch == '/')
+            	    	 {
+            	    		 current_ch = next_char();  // consume the '/'
+            	    		 break;
+            	    	 }
+            	     }
+            	} while (current_ch != Source::END_OF_FILE);
+
+
+            }
+        }
+
+        // Not a comment.
+        else { current_ch = next_char();}  // consume whitespace character
+}
+
 }
 
 }}} // namespace wci::frontend::Cpp

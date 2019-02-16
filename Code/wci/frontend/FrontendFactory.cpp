@@ -11,12 +11,12 @@
 #include "Parser.h"
 #include "Scanner.h"
 #include "Source.h"
-#include "pascal/PascalParserTD.h"
-#include "pascal/PascalScanner.h"
+#include "cpp/CppParserTD.h"
+#include "cpp/CppScanner.h"
 
 namespace wci { namespace frontend {
 
-using namespace wci::frontend::pascal;
+using namespace wci::frontend::Cpp;
 
 Parser *FrontendFactory::create_parser(string language, string type,
                                        Source *source)
@@ -24,8 +24,8 @@ Parser *FrontendFactory::create_parser(string language, string type,
 {
     if ((language == "Cpp") && (type == "top-down"))
     {
-        Scanner *scanner = new PascalScanner(source);
-        return new PascalParserTD(scanner);
+        Scanner *scanner = new CppScanner(source);
+        return new CppParserTD(scanner);
     }
     else if (language != "Cpp") {
         throw new string("Parser factory: Invalid language '" +
